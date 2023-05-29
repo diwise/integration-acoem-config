@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: integration-acoem
+spec:
+  schedule: "0 * * * *" # run hourly by default
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          containers:
+            - env:
+                - name: POD_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+              name: integration-acoem
+              image: ghcr.io/diwise/integration-acoem:changeme
+              imagePullPolicy: IfNotPresent
+              args: []
+              resources:
+                limits:
+                  cpu: 100m
+                  memory: 250Mi
+                requests:
+                  cpu: 50m
+                  memory: 100Mi
+          restartPolicy: Never
+          serviceAccountName: integration-acoem

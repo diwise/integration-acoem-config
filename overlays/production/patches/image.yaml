@@ -1,3 +1,3 @@
 - op: replace
-  path: "/spec/jobTemplate/spec/template/spec/containers/0/image"
-  value: ghcr.io/diwise/integration-acoem@sha256:2e38f947b0da7a88609cad153b99cfcb8ba6d09d8a63aa89928040e2c4eb420c
+  path: "/spec/template/spec/containers/0/image"
+  value: ghcr.io/diwise/integration-acoem@sha256:5033d2d3bf1176fd2e4bcce83ef811c0c141fb889b439b170b064f2a71906e54
